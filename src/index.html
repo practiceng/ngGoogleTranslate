@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>NgTranslate</title>
@@ -8,7 +9,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
   <app-root></app-root>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+  <script type="text/javascript">
+    google.load("elements", "1", {
+      packages: "transliteration"
+    });
+
+    function onLoad() {
+      var options = {
+        sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+        destinationLanguage: [google.elements.transliteration.LanguageCode.MARATHI],
+        shortcutKey: 'ctrl+g',
+        transliterationEnabled: true
+      };
+      var control = new google.elements.transliteration.TransliterationControl(options);
+      // control.makeTransliteratable(['firstName']);
+      var elements = document.getElementsByClassName('marathi');
+      console.log(elements);
+      control.makeTransliteratable(elements);
+    }
+
+    google.setOnLoadCallback(onLoad);
+
+  </script>
+
 </body>
+
 </html>
